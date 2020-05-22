@@ -27,7 +27,7 @@ public class OpenDB {
     public OpenDB() {
         try {
             String databaseUrl = "jdbc:mysql://ctt.cmwy6qjl36fn.us-east-1.rds.amazonaws.com/ctt";
-            connectionSource = new JdbcConnectionSource(databaseUrl, "root", "SuperPassw0rd");
+            connectionSource = new JdbcConnectionSource(databaseUrl, OpenDBCredentials.userid, OpenDBCredentials.password);
 
             userDistritos = DaoManager.createDao(connectionSource, Distritos.class);
             userConcelhos = DaoManager.createDao(connectionSource, Concelhos.class);
