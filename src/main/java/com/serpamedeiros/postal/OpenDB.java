@@ -8,6 +8,9 @@ package com.serpamedeiros.postal;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import static com.serpamedeiros.postal.OpenDBCredentials.databaseUrl;
+import static com.serpamedeiros.postal.OpenDBCredentials.password;
+import static com.serpamedeiros.postal.OpenDBCredentials.userid;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +29,7 @@ public class OpenDB {
 
     public OpenDB() {
         try {
-            String databaseUrl = "jdbc:mysql://ctt.cmwy6qjl36fn.us-east-1.rds.amazonaws.com/ctt";
-            connectionSource = new JdbcConnectionSource(databaseUrl, OpenDBCredentials.userid, OpenDBCredentials.password);
-
+            connectionSource = new JdbcConnectionSource(databaseUrl, userid, password);
             userDistritos = DaoManager.createDao(connectionSource, Distritos.class);
             userConcelhos = DaoManager.createDao(connectionSource, Concelhos.class);
             daoVConcelhos = DaoManager.createDao(connectionSource, VConcelhos.class);
