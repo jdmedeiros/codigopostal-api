@@ -34,12 +34,12 @@
     <env-entry> 
         <env-entry-name>password</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>SuperPassw0rd</env-entry-value> 
+        <env-entry-value>PasswordGoesHere</env-entry-value> 
     </env-entry>
     <env-entry> 
         <env-entry-name>databaseUrl</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>jdbc:mysql://ctt.cmwy6qjl36fn.us-east-1.rds.amazonaws.com/ctt</env-entry-value> 
+        <env-entry-value>jdbc:mysql://dbname.0123456789AB.us-east-1.rds.amazonaws.com/dbname</env-entry-value> 
     </env-entry>
     
 </web-app>
