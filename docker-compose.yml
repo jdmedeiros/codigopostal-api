@@ -1,0 +1,23 @@
+version: "3"
+services:
+    postal-mysql:
+      image: mysql:latest
+      environment:
+        MYSQL_ROOT_PASSWORD: SuperPassw0rd
+        MYSQL_DATABASE: ctt
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: SuperPassw0rd
+      ports:
+       - "3306:3306"
+      volumes:
+       - ./Database:/docker-entrypoint-initdb.d
+
+    postal-tomcat:
+      image: tomcat:latest
+      ports:
+       - "8080:8080"
+      volumes:
+       - ./target:/usr/local/tomcat/webapps
+      links:
+       - postal-mysql
+
