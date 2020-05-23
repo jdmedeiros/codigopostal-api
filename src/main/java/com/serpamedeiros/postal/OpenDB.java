@@ -3,9 +3,6 @@ package com.serpamedeiros.postal;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import static com.serpamedeiros.postal.DBCredentials.databaseUrl;
-import static com.serpamedeiros.postal.DBCredentials.password;
-import static com.serpamedeiros.postal.DBCredentials.userid;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +19,7 @@ public class OpenDB {
     public static Dao<VConcelhos, String> daoVConcelhos;
     public static Dao<CodigosPostais, String> userCodigosPostais;
 
-    public OpenDB() {
+    public OpenDB(String userid, String password, String databaseUrl) {
         try {
             connectionSource = new JdbcConnectionSource(databaseUrl, userid, password);
             userDistritos = DaoManager.createDao(connectionSource, Distritos.class);

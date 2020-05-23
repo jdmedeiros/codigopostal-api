@@ -14,24 +14,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import spark.servlet.SparkApplication;
 import static com.serpamedeiros.postal.OpenDB.connectionSource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class Main implements SparkApplication {
 
     @Override
     public void init() {
-        
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    connectionSource.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        connectionSource.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            }
-        });
+            });
 
-        OpenDB openDB = new OpenDB();
-        UserController userController = new UserController(new UserService());
+            Context env = (Context) new InitialContext().lookup("java:comp/env");
+            String userid = (String) env.lookup("userid");
+            String password = (String) env.lookup("password");
+            String databaseUrl = (String) env.lookup("databaseUrl");
+            OpenDB openDB = new OpenDB(userid, password, databaseUrl);
+            UserController userController = new UserController(new UserService());
+            
+        } catch (NamingException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
