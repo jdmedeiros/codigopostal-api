@@ -16,6 +16,8 @@ services:
       image: tomcat:latest
       ports:
        - "8080:8080"
+      depends_on:
+       - "postal-mysql"
       volumes:
        - ./target:/usr/local/tomcat/webapps
       links:
