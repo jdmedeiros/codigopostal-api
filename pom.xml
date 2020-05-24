@@ -101,4 +101,11 @@
             <version>1.7.25</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub J. Daniel Medeiros Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jdmedeiros/codigopostal-api</url>
+        </repository>
+    </distributionManagement>
 </project>
